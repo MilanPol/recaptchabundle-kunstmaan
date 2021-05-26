@@ -38,12 +38,10 @@
     "phpmd": "php vendor/bin/phpmd src xml phpmd.xml",
     "phpunit": "php vendor/bin/phpunit",
     "phpcpd": "php vendor/bin/phpcpd src",
-    "composer-security": "php vendor/bin/security-checker security:check composer.lock",
     "qa": [
       "@phpcs",
       "@phpmd",
-      "@phpcpd",
-      "@composer-security"
+      "@phpcpd"
     ]
   },
   "autoload": {

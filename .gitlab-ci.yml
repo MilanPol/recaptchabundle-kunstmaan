@@ -47,18 +47,3 @@ phpcpd:
     expire_in: 1 hour
     paths:
       - phpcpd_results.xml
-
-composer-security:
-  stage: 'Code Quality: Run'
-  except:
-    - master
-    - develop
-  dependencies:
-    - build:backend
-  script:
-    - composer composer-security | tee composer_security_results.xml
-  artifacts:
-    when: always
-    expire_in: 1 hour
-    paths:
-      - composer_security_results.xml

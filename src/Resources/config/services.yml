@@ -1,0 +1,19 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    bind:
+      $recaptchaKey: '%esites_recaptcha_bundle.recaptcha_key%'
+      $recaptchaSecret: '%esites_recaptcha_bundle.recaptcha_secret%'
+      $recaptchaScore: '%esites_recaptcha_bundle.recaptcha_score%'
+      $expectedHostname: '%esites_recaptcha_bundle.expected_hostname%'
+      $recaptchaEnabled: '%esites_recaptcha_bundle.enable_recaptcha%'
+      $useClientIp: '%esites_recaptcha_bundle.use_client_ip%'
+
+  Esites\RecaptchaBundle\Service\:
+    resource: '../../Service'
+
+  Esites\RecaptchaBundle\Twig\:
+    resource: '../../Twig'
+
