@@ -1,0 +1,64 @@
+---
+stages:
+  - 'Build Project'
+  - 'Code Quality: Run'
+
+default:
+  image: registry.e-sites.nl/ops/e-containers/php:7.4-alpine
+
+build:backend:
+  stage: 'Build Project'
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  artifacts:
+    paths:
+      - vendor
+      - composer.lock
+    expire_in: 1 hour
+  script:
+    - composer install $COMPOSER_INSTALL_ARGS
+
+phpmd:
+  stage: 'Code Quality: Run'
+  except:
+    - master
+    - develop
+  dependencies:
+    - build:backend
+  script:
+    - composer phpmd | tee phpmd_results.xml
+  artifacts:
+    when: always
+    expire_in: 1 hour
+    paths:
+      - phpmd_results.xml
+
+phpcpd:
+  stage: 'Code Quality: Run'
+  except:
+    - master
+    - develop
+  dependencies:
+    - build:backend
+  script:
+    - composer phpcpd | tee phpcpd_results.xml
+  artifacts:
+    when: always
+    expire_in: 1 hour
+    paths:
+      - phpcpd_results.xml
+
+composer-security:
+  stage: 'Code Quality: Run'
+  except:
+    - master
+    - develop
+  dependencies:
+    - build:backend
+  script:
+    - composer composer-security | tee composer_security_results.xml
+  artifacts:
+    when: always
+    expire_in: 1 hour
+    paths:
+      - composer_security_results.xml

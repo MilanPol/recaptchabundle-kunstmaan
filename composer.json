@@ -1,0 +1,54 @@
+{
+  "name": "esites/recaptcha-bundle",
+  "description": "Recaptcha wrapper for Symfony",
+  "type": "symfony-bundle",
+  "authors": [
+    {
+      "name": "Joshwin Zuidema",
+      "email": "jzuidema@e-sites.nl"
+    }
+  ],
+  "license": "proprietary",
+  "require": {
+    "php": ">=7.4",
+    "symfony/framework-bundle": "^4.4",
+    "symfony/form": "^4.4",
+    "symfony/validator": "^4.4",
+    "google/recaptcha": "^1.2",
+    "twig/twig": "^2.0|^3.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.14",
+    "phpmd/phpmd": "^2.8",
+    "sebastian/phpcpd": "^5.0",
+    "sensiolabs/security-checker": "^6.0",
+    "squizlabs/php_codesniffer": "^3.3"
+  },
+  "scripts": {
+    "auto-scripts": {
+    },
+    "post-install-cmd": [
+      "@auto-scripts"
+    ],
+    "post-update-cmd": [
+      "@auto-scripts"
+    ],
+    "phpcs": "php vendor/bin/phpcs --standard=phpcs.xml src --report=junit --colors -q --extensions=php",
+    "phpcsfix": "vendor/bin/php-cs-fixer fix src",
+    "phpmd": "php vendor/bin/phpmd src xml phpmd.xml",
+    "phpunit": "php vendor/bin/phpunit",
+    "phpcpd": "php vendor/bin/phpcpd src",
+    "composer-security": "php vendor/bin/security-checker security:check composer.lock",
+    "qa": [
+      "@phpcs",
+      "@phpmd",
+      "@phpcpd",
+      "@composer-security"
+    ]
+  },
+  "autoload": {
+    "psr-4": {
+      "Esites\\RecaptchaBundle\\": "src/"
+    }
+  }
+}
