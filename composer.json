@@ -1,5 +1,5 @@
 {
-  "name": "esites/recaptcha-bundle",
+  "name": "milanpol/recaptcha-bundle",
   "description": "Recaptcha wrapper for Symfony",
   "type": "symfony-bundle",
   "authors": [
